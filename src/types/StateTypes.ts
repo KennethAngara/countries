@@ -1,6 +1,6 @@
 export type StateType = {
-    countries : never[]
-    setCountries : React.Dispatch<React.SetStateAction<never[]>>
+    countries : []
+    setCountries : React.Dispatch<React.SetStateAction<[]>>
     loading : boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
     searchQuery : string

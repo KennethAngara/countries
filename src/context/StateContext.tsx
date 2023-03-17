@@ -6,12 +6,12 @@ const StateContext = createContext({} as StateType);
 
 export const StateContextProvider = ({children}: StateContextProviderProps) => {
 
-  const [ countries, setCountries ] = useState([])
-  const [ loading, setLoading ] = useState(false)
-  const [ searchQuery, setSearchQuery ] = useState('')
-  const [area, setArea] = useState(0)
-  const [region, setRegion] = useState('')
-  const [alphabetical, setAlphabetical] = useState(true)
+  const [ countries, setCountries ] = useState<[]>([])
+  const [ loading, setLoading ] = useState<boolean>(false)
+  const [ searchQuery, setSearchQuery ] = useState<string>('')
+  const [area, setArea] = useState<number>(0)
+  const [region, setRegion] = useState<string>('')
+  const [alphabetical, setAlphabetical] = useState<boolean>(true)
 
   return (
     <StateContext.Provider value={{

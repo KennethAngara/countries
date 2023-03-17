@@ -8,27 +8,27 @@ import { CountryType } from './types/CountryType'
 function App() {
   const localCountries = countriesAPI
   
-  const [ countries, setCountries ] = useState([])
-  const [ loading, setLoading ] = useState(false)
-  const [ searchQuery, setSearchQuery ] = useState('')
-  const [area, setArea] = useState(0)
-  const [region, setRegion] = useState('')
-  const [alphabetical, setAlphabetical] = useState(true)
+  // const [ countries, setCountries ] = useState([])
+  // const [ loading, setLoading ] = useState(false)
+  // const [ searchQuery, setSearchQuery ] = useState('')
+  // const [area, setArea] = useState(0)
+  // const [region, setRegion] = useState('')
+  // const [alphabetical, setAlphabetical] = useState(true)
 
-  // const {
-  //   countries,
-  //   setCountries,
-  //   loading,
-  //   setLoading,
-  //   searchQuery,
-  //   setSearchQuery,
-  //   area,
-  //   setArea,
-  //   region,
-  //   setRegion,
-  //   alphabetical,
-  //   setAlphabetical,
-  // } = useStateContextProvider()
+  const {
+    countries,
+    setCountries,
+    loading,
+    setLoading,
+    searchQuery,
+    setSearchQuery,
+    area,
+    setArea,
+    region,
+    setRegion,
+    alphabetical,
+    setAlphabetical,
+  } = useStateContextProvider()
   
   // console.log( countries, setCountries, loading, setLoading, searchQuery, setSearchQuery, area, setArea, region, setRegion, alphabetical, setAlphabetical,)
 
@@ -53,7 +53,6 @@ function App() {
   const sortedCountries = alphabetical ? searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? 1 : -1) : searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? -1 : 1)
 
   return (
-    <StateContextProvider>
       <div className="App">
         {countries.length === 0 && <div>The <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> May not be functioning right now and I'm using a locally exported json. Please check the console for more details.</div>}
 
@@ -74,7 +73,6 @@ function App() {
         )}
         {sortedCountries.length === 0 && <p>No countries matched your query</p>}
       </div>
-    </StateContextProvider>
   )
 }
 
