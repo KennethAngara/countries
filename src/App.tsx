@@ -44,7 +44,7 @@ function App() {
 
   return (
       <div className="App">
-        {!countries && <div>The <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> May not be functioning right now and I'm using a locally exported json. Please check the console for more details.</div>}
+        {!countries && <div>If you see this message, the <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.</div>}
 
         <Filters/>
 
