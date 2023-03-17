@@ -12,6 +12,9 @@ export const StateContextProvider = ({children}: StateContextProviderProps) => {
   const [area, setArea] = useState(0)
   const [region, setRegion] = useState('')
   const [alphabetical, setAlphabetical] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage, setCountriesPerPage] = useState(40);
+  const paginate = (pageNumber: any) => setCurrentPage(pageNumber)
 
   return (
     <StateContext.Provider value={{
@@ -26,7 +29,12 @@ export const StateContextProvider = ({children}: StateContextProviderProps) => {
       region,
       setRegion,
       alphabetical,
-      setAlphabetical
+      setAlphabetical,
+      currentPage,
+      setCurrentPage,
+      countriesPerPage,
+      setCountriesPerPage,
+      paginate
     }}>
       {children}
     </StateContext.Provider>

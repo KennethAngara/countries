@@ -12,19 +12,35 @@ const Filters = () => {
     setRegion,
     alphabetical,
     setAlphabetical,
+    paginate
   } = useStateContextProvider()
+
+  const searchQueryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    paginate(1)
+    setSearchQuery(e.target.value)
+  }
+
+  const areaHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    paginate(1)
+    setArea(parseFloat(e.target.value))
+  }
+
+  const regionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    paginate(1)
+    setRegion(e.target.value)
+  }
 
   return (
     <div>
       <button onClick={() => setAlphabetical(prev => !prev)}>{alphabetical ? "Sorting asc" : "Sorting desc"}</button>
 
-      <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+      <input type="text" value={searchQuery} onChange={(e) => searchQueryHandler(e)}/>
 
-      <select value={area} onChange={(e) => setArea(parseFloat(e.target.value))}>
-        {areaFilter.map(area => <option key={area.value} value={area.value}>{area.text}</option>)}
+      <select value={area} onChange={(e) => areaHandler(e)}>
+        {areaFilter.map(areaNum => <option key={areaNum.value} value={areaNum.value}>{areaNum.text}</option>)}
       </select>
         
-      <select name="region" id="region" value={region} onChange={(e) => setRegion(e.target.value)}>
+      <select name="region" id="region" value={region} onChange={(e) => regionHandler(e)}>
         {regionFilter.map(region => <option key={region.value} value={region.value}>{region.text}</option>)}
       </select>
     </div>
