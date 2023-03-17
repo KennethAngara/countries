@@ -1,7 +1,19 @@
 import { areaFilter, regionFilter } from "../constants/filterData"
-import { AreaFilterProps } from "../types/FilterProps"
+import { useStateContextProvider } from "../context/StateContext"
 
-const Filters = ({searchQuery, setSearchQuery, area, setArea, region, setRegion, alphabetical, setAlphabetical}: AreaFilterProps) => {
+const Filters = () => {
+
+  const {
+    searchQuery,
+    setSearchQuery,
+    area,
+    setArea,
+    region,
+    setRegion,
+    alphabetical,
+    setAlphabetical,
+  } = useStateContextProvider()
+
   return (
     <div>
       <button onClick={() => setAlphabetical(prev => !prev)}>{alphabetical ? "Sorting asc" : "Sorting desc"}</button>

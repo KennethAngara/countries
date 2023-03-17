@@ -1,36 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import { CountryData, Filters } from './components'
 import { countriesAPI } from './constants/countriesAPI'
-import { useStateContextProvider, StateContextProvider } from './context/StateContext'
+import { useStateContextProvider } from './context/StateContext'
 import { CountryType } from './types/CountryType'
 
 function App() {
   const localCountries = countriesAPI
-  
-  // const [ countries, setCountries ] = useState([])
-  // const [ loading, setLoading ] = useState(false)
-  // const [ searchQuery, setSearchQuery ] = useState('')
-  // const [area, setArea] = useState(0)
-  // const [region, setRegion] = useState('')
-  // const [alphabetical, setAlphabetical] = useState(true)
 
   const {
     countries,
     setCountries,
-    loading,
     setLoading,
     searchQuery,
-    setSearchQuery,
     area,
-    setArea,
     region,
-    setRegion,
     alphabetical,
-    setAlphabetical,
   } = useStateContextProvider()
-  
-  // console.log( countries, setCountries, loading, setLoading, searchQuery, setSearchQuery, area, setArea, region, setRegion, alphabetical, setAlphabetical,)
 
   useEffect(() => {
     setLoading(true)
@@ -48,15 +34,19 @@ function App() {
     }
   }
   
-  const searchedCountries = countries?.length !== 0 ? countries?.filter((country: CountryType) => country.name.includes(searchQuery)): localCountries?.filter((country: CountryType) => country.name.includes(searchQuery))
+  const searchedCountries = countries?.length !== 0 ?
+    countries?.filter((country: CountryType) => country.name.includes(searchQuery) ||  country.name.toLowerCase().includes(searchQuery))
+    : localCountries?.filter((country: CountryType) => country.name.includes(searchQuery) || country.name.toLowerCase().includes(searchQuery))
   
-  const sortedCountries = alphabetical ? searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? 1 : -1) : searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? -1 : 1)
+  const sortedCountries = alphabetical ?
+  searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? 1 : -1)
+  : searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? -1 : 1)
 
   return (
       <div className="App">
-        {countries.length === 0 && <div>The <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> May not be functioning right now and I'm using a locally exported json. Please check the console for more details.</div>}
+        {!countries && <div>The <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> May not be functioning right now and I'm using a locally exported json. Please check the console for more details.</div>}
 
-        <Filters searchQuery={searchQuery} setSearchQuery={setSearchQuery} area={area} setArea={setArea} region={region} setRegion={setRegion} alphabetical={alphabetical} setAlphabetical={setAlphabetical}/>
+        <Filters/>
 
         {area > 0 ? 
           region === "" ? 
