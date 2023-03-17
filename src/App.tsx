@@ -48,7 +48,7 @@ function App() {
     }
   }
   
-  const searchedCountries = countries?.length !== 0 ? countries?.filter((country: CountryType) => country.name.toLowerCase().includes(searchQuery)): localCountries?.filter((country: CountryType) => country.name.includes(searchQuery))
+  const searchedCountries = countries?.length !== 0 ? countries?.filter((country: CountryType) => country.name.includes(searchQuery)): localCountries?.filter((country: CountryType) => country.name.includes(searchQuery))
   
   const sortedCountries = alphabetical ? searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? 1 : -1) : searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? -1 : 1)
 
