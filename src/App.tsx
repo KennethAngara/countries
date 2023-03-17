@@ -29,6 +29,8 @@ function App() {
   //   alphabetical,
   //   setAlphabetical,
   // } = useStateContextProvider()
+  
+  // console.log( countries, setCountries, loading, setLoading, searchQuery, setSearchQuery, area, setArea, region, setRegion, alphabetical, setAlphabetical,)
 
   useEffect(() => {
     setLoading(true)
