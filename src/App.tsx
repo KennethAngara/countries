@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { Filters, CountryList } from './components'
+import { CountryList, Navbar } from './components'
 import Pagination from './components/Pagination'
 import { countriesAPI } from './constants/countriesAPI'
+import { itemsPerPage } from './constants/filterData'
 import { useStateContextProvider } from './context/StateContext'
 import { CountryType } from './types/CountryType'
-import './index.css'
-import DarkMode from './components/DarkMode'
 
 function App() {
   const localCountries = countriesAPI
@@ -20,6 +19,7 @@ function App() {
     alphabetical,
     currentPage,
     countriesPerPage,
+    setCountriesPerPage,
     paginate
   } = useStateContextProvider()
 
@@ -41,7 +41,7 @@ function App() {
   
 
   const searchedCountries = countries?.length !== 0 ?
-    countries?.filter((country: CountryType) => country.name.includes(searchQuery) ||  country.name.toLowerCase().includes(searchQuery))
+    countries?.filter((country: CountryType) => country.name.includes(searchQuery) ||  country.name.toLowerCase().includes(searchQuery) ||  country.name.toUpperCase().includes(searchQuery))
     : localCountries?.filter((country: CountryType) => country.name.includes(searchQuery) || country.name.toLowerCase().includes(searchQuery))
   
   const sortedCountries = alphabetical ?
@@ -62,17 +62,16 @@ function App() {
 
 
   return (
-      <div className=" font-poppins">
-        <DarkMode/>
+      <div className="mx-auto w-full xl:max-w-[1280px] relative font-poppins">
+        <Navbar/>
 
         {!countries && 
           <p>
             If you see this message, the <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.
           </p>
         }
-        <p>{totalCountries.length}</p>
 
-        <Filters/>
+        <h1 className='text-center text-4xl font-bold py-8'>Showing {totalCountries.length} results</h1>
 
         <CountryList sortedCountries={sortedCountries} indexOfLastCountry={indexOfLastCountry} indexOfFirstCountry={indexOfFirstCountry}/>
 

@@ -1,6 +1,6 @@
 export const areaFilter = [
     {
-        text: "0",
+        text: "Size (Any)",
         value: 0
     },
     {
@@ -47,7 +47,7 @@ export const areaFilter = [
 
 export const regionFilter = [
     {
-        text: "All",
+        text: "Region (Any)",
         value: ""
     },
     {
@@ -81,5 +81,24 @@ export const regionFilter = [
     {
         text: "Antarctic Ocean",
         value: "Antarctic Ocean"
+    },
+]
+
+export const itemsPerPage = [
+    {
+        text: "30",
+        value: 30
+    },
+    {
+        text: "40",
+        value: 30
+    },
+    {
+        text: "50",
+        value: 30
+    },
+    {
+        text: "60",
+        value: 30
     },
 ]

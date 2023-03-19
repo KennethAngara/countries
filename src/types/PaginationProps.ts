@@ -1,5 +1,5 @@
 export type PaginationProps = {
-    countriesPerPage: any
-    totalCountries: any
-    paginate: (pageNumber: any) => void
+    countriesPerPage: number
+    totalCountries: number
+    paginate: (pageNumber: number) => void
 }

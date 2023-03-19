@@ -1,8 +1,13 @@
 import CountryItem  from './CountryItem'
-import CountryList  from './CountryList'
+import Navbar  from './Navbar'
 import Filters  from './Filters'
+import CountryList  from './CountryList'
 import DarkMode  from './DarkMode'
 
 export {
-    CountryItem, Filters, CountryList, DarkMode
+    CountryItem,
+    CountryList,
+    DarkMode,
+    Navbar,
+    Filters,
 }

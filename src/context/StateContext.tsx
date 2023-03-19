@@ -1,10 +1,10 @@
 import { useState, createContext, useContext } from "react";
-import { StateContextProviderProps } from "../types/StateContextProviderProps";
+import { Children } from "../types/Children";
 import { StateType } from "../types/StateTypes";
 
 const StateContext = createContext({} as StateType);
 
-export const StateContextProvider = ({children}: StateContextProviderProps) => {
+export const StateContextProvider = ({children}: Children) => {
 
   const [ countries, setCountries ] = useState([])
   const [ loading, setLoading ] = useState(false)

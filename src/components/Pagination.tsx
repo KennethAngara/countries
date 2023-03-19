@@ -9,7 +9,7 @@ const Pagination = ({ countriesPerPage, totalCountries, paginate }: PaginationPr
 
   return (
     <nav>
-      <ul>
+      <ul className=' list-none flex space-x-4'>
         {pageNumbers.map(number => (
           <li key={number}>
             <a onClick={() => paginate(number)} href='!#'>
