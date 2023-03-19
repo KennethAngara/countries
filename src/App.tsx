@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import './App.css'
-import { CountryData, Filters } from './components'
+import { Filters, CountryList } from './components'
 import Pagination from './components/Pagination'
 import { countriesAPI } from './constants/countriesAPI'
 import { useStateContextProvider } from './context/StateContext'
 import { CountryType } from './types/CountryType'
+import './index.css'
+import DarkMode from './components/DarkMode'
 
 function App() {
   const localCountries = countriesAPI
@@ -37,9 +38,6 @@ function App() {
       console.log("An error has occured")
     }
   }
-
-  const indexOfLastCountry = currentPage * countriesPerPage;
-  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
   
 
   const searchedCountries = countries?.length !== 0 ?
@@ -51,6 +49,8 @@ function App() {
   : searchedCountries?.sort((a: CountryType, b: CountryType) => a.name > b.name? -1 : 1)
 
   let totalCountries
+  const indexOfLastCountry = currentPage * countriesPerPage;
+  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
 
   area > 0 ? 
     region === "" ? 
@@ -62,26 +62,23 @@ function App() {
 
 
   return (
-      <div className="App">
-        {!countries && <div>If you see this message, the <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.</div>}
+      <div className=" font-poppins">
+        <DarkMode/>
+
+        {!countries && 
+          <p>
+            If you see this message, the <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.
+          </p>
+        }
         <p>{totalCountries.length}</p>
 
         <Filters/>
 
-        {area > 0 ? 
-          region === "" ? 
-            sortedCountries?.filter((country: CountryType) => country.area && country.region.includes(region) && country.area >= area).slice(indexOfFirstCountry, indexOfLastCountry).map((country: CountryType, i) => /*area > 0 && region === "" */
-              <CountryData key={i} countryCount={i + 1} name={country.name} area={country.area} region={country.region}/>)
-            : sortedCountries?.filter((country: CountryType) => country.area && country.region === region).slice(indexOfFirstCountry, indexOfLastCountry).map((country: CountryType, i) => /*area > 0 && region !== "" */
-              <CountryData key={i} countryCount={i + 1} name={country.name} area={country.area} region={country.region}/>) 
-          : region === "" ?
-            sortedCountries?.slice(indexOfFirstCountry, indexOfLastCountry).map((country: CountryType, i) => /*area <= 0 && region === "" */
-                <CountryData key={i} countryCount={i + 1} name={country.name} area={country.area} region={country.region}/>) 
-            : sortedCountries?.filter((country: CountryType) => country.region === region).slice(indexOfFirstCountry, indexOfLastCountry).map((country: CountryType, i) => /*area <= 0 && region !== "" */
-                <CountryData key={i} countryCount={i + 1} name={country.name} area={country.area} region={country.region}/>
-        )}
+        <CountryList sortedCountries={sortedCountries} indexOfLastCountry={indexOfLastCountry} indexOfFirstCountry={indexOfFirstCountry}/>
+
         <Pagination countriesPerPage={countriesPerPage} totalCountries={totalCountries.length} paginate={paginate}/>
-        {sortedCountries.length === 0 && <p>No countries matched your query</p>}
+
+        {sortedCountries.length === 0 && <p className=' text-white bg-black'>No countries matched your query</p>}
       </div>
   )
 }

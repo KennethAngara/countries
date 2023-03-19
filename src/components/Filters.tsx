@@ -37,7 +37,7 @@ const Filters = () => {
       <input type="text" value={searchQuery} onChange={(e) => searchQueryHandler(e)}/>
 
       <select value={area} onChange={(e) => areaHandler(e)}>
-        {areaFilter.map(areaNum => <option key={areaNum.value} value={areaNum.value}>{areaNum.text}</option>)}
+        {areaFilter.map(countryArea => <option key={countryArea.value} value={countryArea.value}>{countryArea.text}</option>)}
       </select>
         
       <select name="region" id="region" value={region} onChange={(e) => regionHandler(e)}>

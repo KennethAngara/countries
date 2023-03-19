@@ -3,12 +3,12 @@ type countryCountType = {
   countryCount: number
 }
 
-type CountryDataType = CountryType & countryCountType
+type CountryItemType = CountryType & countryCountType
 
 
-const CountryData = ({name, area, region, countryCount}: CountryDataType) => {
+const CountryItem = ({name, area, region, countryCount}: CountryItemType) => {
   return (
-    <div className='countryDataContainer'>
+    <div className='bg-white text-black dark:bg-black dark:text-white'>
       <p>{countryCount} {name}</p>
       <p>Area: {area ? area + " km²" : "Unspecified area"}</p>
       <p>Region: {region}</p>      
@@ -16,4 +16,4 @@ const CountryData = ({name, area, region, countryCount}: CountryDataType) => {
   )
 }
 
-export default CountryData
+export default CountryItem
