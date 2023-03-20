@@ -34,11 +34,11 @@ const Filters = () => {
     <div className="hidden sm:flex sm:space-x-5 items-center">
       <input type="text" value={searchQuery} className="outline-none h-[35px] border-2 border-slate-800 dark:border-white rounded-full pl-2 dark:bg-[#3B3B3B] dark:text-white" placeholder='Search for Countries' onChange={(e) => searchQueryHandler(e)}/>
 
-      <select value={area} className='outline-none h-[35px] border-2 border-slate-800 dark:border-white dark:bg-[#3B3B3B] dark:text-white rounded-sm' onChange={(e) => areaHandler(e)}>
+      <select value={area} className='outline-none h-[35px] border-2 border-slate-800 dark:border-white dark:bg-[#3B3B3B] dark:text-white rounded-sm hover:cursor-pointer' onChange={(e) => areaHandler(e)}>
         {areaFilter.map(countryArea => <option key={countryArea.value} value={countryArea.value}>{countryArea.text}</option>)}
       </select>
         
-      <select name="region" id="region" value={region} className="outline-none h-[35px] border-2 border-slate-800 dark:border-white rounded-sm text-center dark:bg-[#3B3B3B] dark:text-white" onChange={(e) => regionHandler(e)}>
+      <select name="region" id="region" value={region} className="outline-none h-[35px] border-2 border-slate-800 dark:border-white rounded-sm text-center dark:bg-[#3B3B3B] dark:text-white hover:cursor-pointer" onChange={(e) => regionHandler(e)}>
         {regionFilter.map(region => <option key={region.value} value={region.value}>{region.text}</option>)}
       </select>
       
