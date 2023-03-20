@@ -15,5 +15,7 @@ export type StateType = {
     setRegion: React.Dispatch<React.SetStateAction<string>>
     alphabetical: boolean
     setAlphabetical: React.Dispatch<React.SetStateAction<boolean>>
+    toggle: boolean
+    setToggle: React.Dispatch<React.SetStateAction<boolean>>
     paginate: (pageNumber: any) => void
 }

@@ -3,7 +3,7 @@ import { Children } from '../types/Children'
 
 const Layout = ({children}: Children) => {
   return (
-    <div className='dark:bg-slate-900 dark:text-white'>
+    <div className='dark:bg-slate-900 dark:text-white min-h-screen'>
         {children}
     </div>
   )

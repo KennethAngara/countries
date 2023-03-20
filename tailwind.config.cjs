@@ -13,7 +13,10 @@ module.exports = {
       fontFamily: {
         Roman: ['Gideon Roman', 'cursive'],
         poppins: ["Poppins", "sans-serif"],
-      }
+      },
+      colors: {
+        dimWhite: "rgba(255, 255, 255, 0.7)",
+      },
     },
     screens: {
       xs: "480px",

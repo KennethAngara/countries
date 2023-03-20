@@ -13,8 +13,9 @@ export const StateContextProvider = ({children}: Children) => {
   const [region, setRegion] = useState('')
   const [alphabetical, setAlphabetical] = useState(true)
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setCountriesPerPage] = useState(30);
+  const [countriesPerPage, setCountriesPerPage] = useState(30)
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber)
+  const [toggle, setToggle] = useState(false)
 
   return (
     <StateContext.Provider value={{
@@ -34,7 +35,9 @@ export const StateContextProvider = ({children}: Children) => {
       setCurrentPage,
       countriesPerPage,
       setCountriesPerPage,
-      paginate
+      paginate,
+      toggle,
+      setToggle,
     }}>
       {children}
     </StateContext.Provider>

@@ -59,25 +59,23 @@ function App() {
     : region === "" ?
       totalCountries = sortedCountries
       : totalCountries = sortedCountries?.filter((country: CountryType) => country.region === region)
+    
+    {!countries && alert("If you see this message, the API is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.")
+    }
 
 
   return (
       <div className="mx-auto w-full xl:max-w-[1280px] relative font-poppins">
         <Navbar/>
 
-        {!countries && 
-          <p>
-            If you see this message, the <a href="https://restcountries.com/v2/all?fields=name,region,area" target={'_blank'}>API</a> is probably overloaded and may not be functioning right now and. I'm using a locally exported json with the same data to create the same functionality. Please check the console for more details.
-          </p>
+        {sortedCountries.length !== 0 ? 
+          <h1 className='text-center text-2xl sm:text-4xl font-bold px-6 py-8'>Showing {totalCountries.length} results</h1> 
+          : <h1 className='text-center text-2xl sm:text-4xl font-bold px-6 py-8'>No countries matched your query</h1>
         }
-
-        <h1 className='text-center text-4xl font-bold py-8'>Showing {totalCountries.length} results</h1>
 
         <CountryList sortedCountries={sortedCountries} indexOfLastCountry={indexOfLastCountry} indexOfFirstCountry={indexOfFirstCountry}/>
 
         <Pagination countriesPerPage={countriesPerPage} totalCountries={totalCountries.length} paginate={paginate}/>
-
-        {sortedCountries.length === 0 && <p className=' text-white bg-black'>No countries matched your query</p>}
       </div>
   )
 }
