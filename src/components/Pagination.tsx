@@ -19,7 +19,7 @@ const Pagination = ({ countriesPerPage, totalCountries, paginate }: PaginationPr
       <ul className=' list-none flex flex-wrap space-x-6 justify-center text-white pb-7'>
         {pageNumbers.map((number, i) => (
           <li key={number}>
-            <a className={`rounded-full ${active === i+1 ? "bg-purple-700" : "bg-blue-500"} px-3 py-1 block mb-5`} onClick={() => handleClick(i)} href='!#'>
+            <a className={`rounded-full ${active === i+1 ? "bg-purple-700" : "bg-blue-500"} px-3 py-1 block mb-5`} onClick={() => handleClick(i)} href='#'>
               {number}
             </a>
           </li>
