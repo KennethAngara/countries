@@ -19,7 +19,6 @@ function App() {
     alphabetical,
     currentPage,
     countriesPerPage,
-    setCountriesPerPage,
     paginate
   } = useStateContextProvider()
 
@@ -55,7 +54,7 @@ function App() {
   area > 0 ? 
     region === "" ? 
       totalCountries = sortedCountries?.filter((country: CountryType) => country.area && country.region.includes(region) && country.area >= area)
-      : totalCountries = sortedCountries?.filter((country: CountryType) => country.area && country.region === region)
+      : totalCountries = sortedCountries?.filter((country: CountryType) => country.area && country.region === region && country.area >= area)
     : region === "" ?
       totalCountries = sortedCountries
       : totalCountries = sortedCountries?.filter((country: CountryType) => country.region === region)
@@ -73,7 +72,7 @@ function App() {
           : <h1 className='text-center text-2xl sm:text-4xl font-bold px-6 py-8'>No countries matched your query</h1>
         }
 
-        <CountryList sortedCountries={sortedCountries} indexOfLastCountry={indexOfLastCountry} indexOfFirstCountry={indexOfFirstCountry}/>
+        <CountryList sortedCountries={totalCountries} indexOfLastCountry={indexOfLastCountry} indexOfFirstCountry={indexOfFirstCountry}/>
 
         <Pagination countriesPerPage={countriesPerPage} totalCountries={totalCountries.length} paginate={paginate}/>
       </div>
